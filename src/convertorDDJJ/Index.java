@@ -43,7 +43,6 @@ public class Index extends javax.swing.JFrame {
         btnGenerar.setName(""); // NOI18N
         btnGenerar.setPreferredSize(new java.awt.Dimension(80, 25));
 
-        btnBuscar.setBackground(new java.awt.Color(153, 153, 153));
         btnBuscar.setText("Seleccionar");
         btnBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnBuscar.setFocusPainted(false);
@@ -65,7 +64,7 @@ public class Index extends javax.swing.JFrame {
 
         jLabel3.setForeground(new java.awt.Color(204, 204, 204));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Generar archivo excel");
+        jLabel3.setText("Generar archivo Excel");
         jLabel3.setMaximumSize(new java.awt.Dimension(120, 15));
         jLabel3.setMinimumSize(new java.awt.Dimension(120, 15));
         jLabel3.setPreferredSize(new java.awt.Dimension(120, 15));

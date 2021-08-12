@@ -1,5 +1,6 @@
 package convertorDDJJ;
 
+import java.awt.Color;
 import java.awt.Desktop;
 import java.io.BufferedReader;
 import java.io.File;
@@ -51,6 +52,10 @@ public class Worker extends SwingWorker<Void, String> {
 
     @Override
     protected Void doInBackground() throws Exception {
+        this.view.btnBuscar.setEnabled(false);
+        // this.view.btnBuscar.setContentAreaFilled(false);
+        this.view.btnGenerar.setEnabled(false);
+
         ArrayList<String[]> data = new ArrayList<>();
 
         // LECTURA DE TXT Y CREACION DE ARRAY DE DATA
@@ -136,6 +141,7 @@ public class Worker extends SwingWorker<Void, String> {
             fileOuS.flush();
             fileOuS.close();
 
+            this.view.textLoader.setText("Excel generado con exito");
             Desktop.getDesktop().open(excelFile);
         } catch (Exception e) {
             this.view.textLoader.setText("");
