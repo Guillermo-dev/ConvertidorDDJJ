@@ -11,7 +11,7 @@
     <description>Builds, tests, and runs the project LectorDDJJ.</description>
     <import file="nbproject/build-impl.xml"/>
         <target name="-post-jar">       
-            <echo file="${dist.dir}/Convertidor DDJJ.bat" >start javaw -jar ${application.title}.jar</echo>   
+            <echo file="${dist.dir}/Lector DDJJ.bat" >start javaw -jar ${application.title}.jar</echo>   
             <zip destfile="${dist.dir}/${application.title}.zip" basedir="${dist.dir}" />
         </target> 
 
