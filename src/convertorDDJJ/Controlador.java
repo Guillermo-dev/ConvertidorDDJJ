@@ -58,6 +58,7 @@ public class Controlador implements ActionListener {
                 Controlador.DDJJFileTxt = selectorArchivos.getSelectedFile(); // obtiene el archivo seleccionado
 
                 if (archivoInvalido()) {
+                    Controlador.view.direccion.setText("");
                     JOptionPane.showMessageDialog(Controlador.view, "Archivo invalido", "Archivo invalido", JOptionPane.ERROR_MESSAGE);
                 } else {
                     Controlador.view.direccion.setText(Controlador.DDJJFileTxt.getName());

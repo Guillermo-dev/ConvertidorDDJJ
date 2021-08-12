@@ -43,6 +43,7 @@ public class Index extends javax.swing.JFrame {
         btnGenerar.setName(""); // NOI18N
         btnGenerar.setPreferredSize(new java.awt.Dimension(80, 25));
 
+        btnBuscar.setBackground(new java.awt.Color(153, 153, 153));
         btnBuscar.setText("Seleccionar");
         btnBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnBuscar.setFocusPainted(false);
