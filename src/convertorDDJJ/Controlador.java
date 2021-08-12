@@ -38,6 +38,8 @@ public class Controlador implements ActionListener {
 
     private static Index view;
     private static File DDJJFileTxt = null;
+    private static int loaderTotal;
+    private static int loaderActual;
 
     public Controlador(Index view) {
         Controlador.view = view;
@@ -74,7 +76,6 @@ public class Controlador implements ActionListener {
             String prevCUILT = "";
             while ((linea = br.readLine()) != null) {
                 String[] fila = new String[19];
-
                 if (!prevCUILT.equals(linea.substring(0, 11))) {
                     String[] espacio = new String[]{"", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""};
                     data.add(espacio);
@@ -102,6 +103,7 @@ public class Controlador implements ActionListener {
 
                 data.add(fila);
                 prevCUILT = linea.substring(0, 11);
+                System.out.println("LEEEEEEEEEEEEEE");
             }
         } catch (Exception e) {
         } finally {
@@ -129,10 +131,14 @@ public class Controlador implements ActionListener {
                 XSSFCell cell = row.createCell(j);//Creando celda para el contenido del producto
                 cell.setCellValue(declaracion[j]); //Añadiendo el contenido
             }
+            if (i == 2) {
+                for (int x = 0; x < HEADER.length; x++) {
+                    hoja.autoSizeColumn(x);
+                    System.out.println("ACOMODANDO" + x);
+                }
+            }
+            System.out.println("ROW" + i);
             i++;
-        }
-        for (i = 0; i < HEADER.length; i++) {
-            hoja.autoSizeColumn(i);
         }
 
         File excelFile = new File(filePath); // Referenciando a la ruta y el archivo Excel a crear
@@ -144,14 +150,14 @@ public class Controlador implements ActionListener {
             fileOuS.flush();
             fileOuS.close();
 
+            Controlador.view.textIndicador.setText("Excel generado con exito");
             Desktop.getDesktop().open(excelFile);
 
         } catch (Exception e) {
+            Controlador.view.textIndicador.setText("");
             JOptionPane.showMessageDialog(Controlador.view, "Error inesperado", "Error inesperado", JOptionPane.ERROR_MESSAGE);
         }
     }
-
-
 
     @Override
     public void actionPerformed(ActionEvent ae) {
@@ -176,13 +182,15 @@ public class Controlador implements ActionListener {
             if (archivoInvalido()) {
                 JOptionPane.showMessageDialog(Controlador.view, "Archivo invalido", "Seleccionar Archivo", JOptionPane.ERROR_MESSAGE);
             } else {
-                Controlador.view.btnBuscar.setEnabled(false);
-                Controlador.view.btnGenerar.setEnabled(false);
-                
-                Controlador.view.textIndicador.setText("Generando archivo excel, por favor no cierre el programa");
-                
                 Worker worker = new Worker(view);
                 worker.execute();
+
+                Controlador.view.btnBuscar.setEnabled(false);
+                Controlador.view.btnGenerar.setEnabled(false);
+
+                Controlador.view.textIndicador.setText("Generando ("
+                        + Controlador.loaderActual + "/" + Controlador.loaderTotal + ")");
+
             }
         }
     }

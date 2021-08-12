@@ -23,37 +23,34 @@ public class Index extends javax.swing.JFrame {
         setBackground(new java.awt.Color(51, 51, 255));
         setResizable(false);
 
-        jPanel1.setBackground(new java.awt.Color(102, 255, 102));
+        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
         jPanel1.setDoubleBuffered(false);
         jPanel1.setPreferredSize(new java.awt.Dimension(400, 130));
 
-        btnGenerar.setBackground(new java.awt.Color(204, 204, 204));
+        btnGenerar.setBackground(new java.awt.Color(153, 153, 153));
         btnGenerar.setText("GENERAR");
+        btnGenerar.setName(""); // NOI18N
 
-        btnBuscar.setBackground(new java.awt.Color(204, 204, 204));
+        btnBuscar.setBackground(new java.awt.Color(153, 153, 153));
         btnBuscar.setText("Buscar");
-        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscarActionPerformed(evt);
-            }
-        });
 
         direccion.setEditable(false);
+        direccion.setBackground(new java.awt.Color(255, 255, 255));
+
+        textIndicador.setForeground(new java.awt.Color(213, 213, 213));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
                         .addComponent(direccion)
                         .addGap(18, 18, 18)
                         .addComponent(btnBuscar))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(textIndicador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(textIndicador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(100, 100, 100)
@@ -78,10 +75,6 @@ public class Index extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnBuscarActionPerformed
 
     public static void main(String args[]) {
 
