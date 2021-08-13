@@ -10,10 +10,10 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.SwingWorker;
-import org.apache.poi.xssf.usermodel.XSSFCell;
-import org.apache.poi.xssf.usermodel.XSSFRow;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.apache.poi.xssf.streaming.SXSSFCell;
+import org.apache.poi.xssf.streaming.SXSSFRow;
+import org.apache.poi.xssf.streaming.SXSSFSheet;
+import org.apache.poi.xssf.streaming.SXSSFWorkbook;
 
 // Clase para ejecutar tareas en segundo plano, en otro hilo
 public class Worker extends SwingWorker<Void, String> {
@@ -81,7 +81,7 @@ public class Worker extends SwingWorker<Void, String> {
                 fila[ANIO] = linea.substring(51, 55);
                 fila[PERIODO] = linea.substring(55, 57);
                 fila[RECTIFICACION] = linea.substring(57, 59);
-                fila[FECHA_PRES] = linea.substring(59, 67);
+                fila[FECHA_PRES] = linea.substring(59, 63) + "-" +linea.substring(63, 65) +"-"+linea.substring(65, 67);
                 fila[TOTAL_IMP_LIQ] = linea.substring(67, 86);
                 fila[SALDO_PER_ANT] = linea.substring(86, 105);
                 fila[RETENCIONES] = linea.substring(105, 124);
@@ -111,21 +111,38 @@ public class Worker extends SwingWorker<Void, String> {
         String filePath = Controlador.DDJJFileTxt.getPath() + fileName;
 
         //Creando objeto libro de Excel
-        XSSFWorkbook book = new XSSFWorkbook();
-        XSSFSheet hoja = book.createSheet("Declaraciones juradas");
+        SXSSFWorkbook book = new SXSSFWorkbook();
+        SXSSFSheet hoja = book.createSheet("Declaraciones juradas");
 
         int i = 0;
         for (String[] declaracion : data) {
-            XSSFRow row = hoja.createRow(i);// Se crea las filas
+            SXSSFRow row = hoja.createRow(i);// Se crea las filas
+            if (i == 0) {
+                hoja.setColumnWidth(CUIT, 4000);
+                hoja.setColumnWidth(DDJJ_ORIGEN, 2500);
+                hoja.setColumnWidth(OTRA, 3500);
+                hoja.setColumnWidth(CUJ, 3500);
+                hoja.setColumnWidth(TOTAL_PAIS, 7000);
+                hoja.setColumnWidth(ANIO, 3000);
+                hoja.setColumnWidth(PERIODO, 3000);
+                hoja.setColumnWidth(RECTIFICACION, 3000);
+                hoja.setColumnWidth(FECHA_PRES, 4500);
+                hoja.setColumnWidth(TOTAL_IMP_LIQ, 7000);
+                hoja.setColumnWidth(SALDO_PER_ANT, 7000);
+                hoja.setColumnWidth(RETENCIONES, 7000);
+                hoja.setColumnWidth(PERCEPCIONES, 7000);
+                hoja.setColumnWidth(RETENCIONES_BANCARIAS, 7000);
+                hoja.setColumnWidth(OTROS_PAGOS, 7000);
+                hoja.setColumnWidth(IMP_A_PAGAR_SALDO, 7000);
+                hoja.setColumnWidth(IMP_GRABADO, 7000);
+                hoja.setColumnWidth(IMP_NO_GRABADO, 7000);
+                hoja.setColumnWidth(IMP_EXENTO, 7000);
+            }
             for (int j = 0; j < HEADER.length; j++) {
-                XSSFCell cell = row.createCell(j);// Se crea la celda 
+                SXSSFCell cell = row.createCell(j);// Se crea la celda 
                 cell.setCellValue(declaracion[j]); // Se añade el contenido
             }
-            if (i == 2) {
-                for (int x = 0; x < HEADER.length; x++) {
-                    hoja.autoSizeColumn(x);
-                }
-            }
+
             publish("Generando Excel (" + i + " / " + data.size() + ")");
             i++;
         }
