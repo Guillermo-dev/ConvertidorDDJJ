@@ -5,6 +5,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -44,6 +45,7 @@ public class Worker extends SwingWorker<Void, String> {
         this.view = view;
     }
 
+    @Override
     protected void process(List<String> loader) {
         // Actualizacion de loader
         this.view.textLoader.setText(loader.get(loader.size() - 1));
@@ -58,7 +60,7 @@ public class Worker extends SwingWorker<Void, String> {
 
         // LECTURA DE TXT Y CREACION DE ARRAY DE DATA
         FileReader fr = null;
-        BufferedReader br;
+        BufferedReader br = null;
         try {
             fr = new FileReader(Controlador.DDJJFileTxt);
             br = new BufferedReader(fr);
@@ -95,13 +97,12 @@ public class Worker extends SwingWorker<Void, String> {
                 prevCUILT = linea.substring(0, 11);
                 publish("Leyendo Declaraciones juradas " + data.size());
             }
-        } catch (Exception e) {
+        } catch (IOException e) {
         } finally {
             try {
-                if (null != fr) {
-                    fr.close();
-                }
-            } catch (Exception e2) {
+                br.close();
+                fr.close();
+            } catch (IOException e2) {
             }
         }
 
@@ -115,10 +116,10 @@ public class Worker extends SwingWorker<Void, String> {
 
         int i = 0;
         for (String[] declaracion : data) {
-            XSSFRow row = hoja.createRow(i);//se crea las filas
+            XSSFRow row = hoja.createRow(i);// Se crea las filas
             for (int j = 0; j < HEADER.length; j++) {
-                XSSFCell cell = row.createCell(j);//Creando celda para el contenido del producto
-                cell.setCellValue(declaracion[j]); //Añadiendo el contenido
+                XSSFCell cell = row.createCell(j);// Se crea la celda 
+                cell.setCellValue(declaracion[j]); // Se añade el contenido
             }
             if (i == 2) {
                 for (int x = 0; x < HEADER.length; x++) {
@@ -130,6 +131,7 @@ public class Worker extends SwingWorker<Void, String> {
         }
 
         publish("Ya casi estamos, ultimos detalles");
+
         File excelFile = new File(filePath); // Referenciando a la ruta y el archivo Excel a crear
         try (FileOutputStream fileOuS = new FileOutputStream(excelFile)) {
             if (excelFile.exists()) { // Si el archivo existe lo eliminaremos
