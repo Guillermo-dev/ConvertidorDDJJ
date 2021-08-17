@@ -1,4 +1,4 @@
-package convertorDDJJ;
+package convertorExcel;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

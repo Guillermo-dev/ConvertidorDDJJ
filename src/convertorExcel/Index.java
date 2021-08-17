@@ -1,4 +1,4 @@
-package convertorDDJJ;
+package convertorExcel;
 
 import javax.swing.ImageIcon;
 

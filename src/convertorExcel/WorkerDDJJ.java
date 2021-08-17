@@ -1,4 +1,4 @@
-package convertorDDJJ;
+package convertorExcel;
 
 import java.awt.Desktop;
 import java.io.BufferedReader;

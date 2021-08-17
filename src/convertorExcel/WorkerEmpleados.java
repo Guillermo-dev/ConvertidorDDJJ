@@ -1,4 +1,4 @@
-package convertorDDJJ;
+package convertorExcel;
 
 import java.awt.Desktop;
 import java.io.BufferedReader;
@@ -68,7 +68,7 @@ public class WorkerEmpleados extends SwingWorker<Void, String> {
 
                 data.add(fila);
                 prevCUILT = linea.substring(0, 11);
-                
+
                 publish("Leyendo Empleados " + data.size());
             }
         } catch (IOException e) {

@@ -1,4 +1,4 @@
-package convertorDDJJ;
+package convertorExcel;
 
 public class LectorMain {
 
