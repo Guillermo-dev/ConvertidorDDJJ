@@ -12,7 +12,7 @@
     <import file="nbproject/build-impl.xml"/>
         <target name="-post-jar">       
             <echo file="${dist.dir}/Lector DDJJ.bat" >start javaw -jar ${application.title}.jar</echo>   
-            <zip destfile="${dist.dir}/${application.title}.zip" basedir="${dist.dir}" />
+           <!--  <zip destfile="${dist.dir}/${application.title}.zip" basedir="${dist.dir}" /> -->
         </target> 
 
 

@@ -26,7 +26,7 @@ public class Controlador implements ActionListener {
         Controlador.view.setTitle("Generador de excel DDJJ");
         Controlador.view.setLocationRelativeTo(null);
         Controlador.view.setVisible(true);
-        
+
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
@@ -69,7 +69,7 @@ public class Controlador implements ActionListener {
         // GENERAR EXCEL
         if (ae.getSource() == Controlador.view.btnGenerar) {
             if (archivoInvalido()) {
-                JOptionPane.showMessageDialog(this.view, "Seleccione un archivo de DDJJ", "Error al leer", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(Controlador.view, "Seleccione un archivo de DDJJ", "Error al leer", JOptionPane.ERROR_MESSAGE);
             } else {
                 Worker worker = new Worker(view);
                 worker.execute();
