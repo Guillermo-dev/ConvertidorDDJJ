@@ -1,6 +1,6 @@
 package convertorDDJJ;
 
-public class LectorDDJJ {
+public class LectorMain {
 
     public static void main(String[] args) {
         Index view = new Index();

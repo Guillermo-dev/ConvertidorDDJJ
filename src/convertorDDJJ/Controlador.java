@@ -14,16 +14,19 @@ import javax.swing.UnsupportedLookAndFeelException;
 public class Controlador implements ActionListener {
 
     private static Index view;
-    public static File DDJJFileTxt = null;
+    public static File fileTxt = null;
 
     public Controlador(Index view) {
         Controlador.view = view;
-        Controlador.view.btnBuscar.addActionListener(this);
-        Controlador.view.btnGenerar.addActionListener(this);
+        Controlador.view.btnBuscarDDJJ.addActionListener(this);
+        Controlador.view.btnGenerarDDJJ.addActionListener(this);
+
+        Controlador.view.btnBuscarEmp.addActionListener(this);
+        Controlador.view.btnGenerarEmp.addActionListener(this);
     }
 
     public void iniciar() {
-        Controlador.view.setTitle("Generador de excel DDJJ");
+        Controlador.view.setTitle("Generador de excel");
         Controlador.view.setLocationRelativeTo(null);
         Controlador.view.setVisible(true);
 
@@ -37,41 +40,66 @@ public class Controlador implements ActionListener {
     public boolean archivoInvalido() {
         String tipoArchivo = "";
         try {
-            tipoArchivo = Files.probeContentType(Controlador.DDJJFileTxt.toPath());
+            tipoArchivo = Files.probeContentType(Controlador.fileTxt.toPath());
         } catch (Exception ex) {
             return true;
         }
-        return (Controlador.DDJJFileTxt == null) || (!tipoArchivo.equals("text/plain"));
+        return (Controlador.fileTxt == null) || (!tipoArchivo.equals("text/plain"));
+    }
+
+    public void buscarArchivo() {
+        JFileChooser selectorArchivos = new JFileChooser();
+        selectorArchivos.setFileSelectionMode(JFileChooser.FILES_ONLY);
+
+        int opcion = selectorArchivos.showOpenDialog(Controlador.view);
+
+        if (opcion == JFileChooser.APPROVE_OPTION) {
+
+            Controlador.fileTxt = selectorArchivos.getSelectedFile(); // obtiene el archivo seleccionado
+
+            if (archivoInvalido()) {
+                Controlador.view.direccionDDJJ.setText("");
+                JOptionPane.showMessageDialog(Controlador.view, "Archivo invalido", "Archivo invalido", JOptionPane.ERROR_MESSAGE);
+            } else {
+                Controlador.view.direccionDDJJ.setText(Controlador.fileTxt.getName());
+                Controlador.view.direccionEmp.setText(Controlador.fileTxt.getName());
+            }
+        }
     }
 
     @Override
     public void actionPerformed(ActionEvent ae) {
-        // BUSCAR DIRECCION
-        if (ae.getSource() == Controlador.view.btnBuscar) {
-            JFileChooser selectorArchivos = new JFileChooser();
-            selectorArchivos.setFileSelectionMode(JFileChooser.FILES_ONLY);
 
-            int opcion = selectorArchivos.showOpenDialog(Controlador.view);
-
-            if (opcion == JFileChooser.APPROVE_OPTION) {
-
-                Controlador.DDJJFileTxt = selectorArchivos.getSelectedFile(); // obtiene el archivo seleccionado
-
-                if (archivoInvalido()) {
-                    Controlador.view.direccion.setText("");
-                    JOptionPane.showMessageDialog(Controlador.view, "Archivo invalido", "Archivo invalido", JOptionPane.ERROR_MESSAGE);
-                } else {
-                    Controlador.view.direccion.setText(Controlador.DDJJFileTxt.getName());
-                }
-            }
+        //DECLARACIONES JURADAS
+        
+        // Buscar direccion
+        if (ae.getSource() == Controlador.view.btnBuscarDDJJ) {
+            buscarArchivo();
         }
 
-        // GENERAR EXCEL
-        if (ae.getSource() == Controlador.view.btnGenerar) {
+        // Generar Excel
+        if (ae.getSource() == Controlador.view.btnGenerarDDJJ) {
             if (archivoInvalido()) {
                 JOptionPane.showMessageDialog(Controlador.view, "Seleccione un archivo de DDJJ", "Error al leer", JOptionPane.ERROR_MESSAGE);
             } else {
-                Worker worker = new Worker(view);
+                WorkerDDJJ worker = new WorkerDDJJ(view);
+                worker.execute();
+            }
+        }
+
+        // EMPLEADOS
+        
+        // Buscar direccion
+        if (ae.getSource() == Controlador.view.btnBuscarEmp) {
+            buscarArchivo();
+        }
+
+        // Generar Excel
+        if (ae.getSource() == Controlador.view.btnGenerarEmp) {
+            if (archivoInvalido()) {
+                JOptionPane.showMessageDialog(Controlador.view, "Seleccione un archivo de Empleados", "Error al leer", JOptionPane.ERROR_MESSAGE);
+            } else {
+                WorkerEmpleados worker = new WorkerEmpleados(view);
                 worker.execute();
             }
         }

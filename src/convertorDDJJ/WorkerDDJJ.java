@@ -16,7 +16,7 @@ import org.apache.poi.xssf.streaming.SXSSFSheet;
 import org.apache.poi.xssf.streaming.SXSSFWorkbook;
 
 // Clase para ejecutar tareas en segundo plano, en otro hilo
-public class Worker extends SwingWorker<Void, String> {
+public class WorkerDDJJ extends SwingWorker<Void, String> {
 
     private final Index view;
 
@@ -41,20 +41,20 @@ public class Worker extends SwingWorker<Void, String> {
     private static final int IMP_EXENTO = 18;
     private static final String[] HEADER = new String[]{"CUIT", "DDJJ origen", "", "CUJ", "Total pais", "Año", "Periodo", "Rectificacion", "Fecha Presentacion", "Total impuesto liquidados", "Saldo periodo anterior", "Retenciones", "Percepciones", "Retenciones bancarias", "Otros pagos", "Importe a pagar saldo", "Importe gravado", "Importe no gravado", "Importe exento"};
 
-    public Worker(Index view) {
+    public WorkerDDJJ(Index view) {
         this.view = view;
     }
 
     @Override
     protected void process(List<String> loader) {
         // Actualizacion de loader
-        this.view.textLoader.setText(loader.get(loader.size() - 1));
+        this.view.textLoaderDDJJ.setText(loader.get(loader.size() - 1));
     }
 
     @Override
     protected Void doInBackground() throws Exception {
-        this.view.btnBuscar.setEnabled(false);
-        this.view.btnGenerar.setEnabled(false);
+        this.view.btnBuscarDDJJ.setEnabled(false);
+        this.view.btnGenerarDDJJ.setEnabled(false);
 
         ArrayList<String[]> data = new ArrayList<>();
 
@@ -62,7 +62,7 @@ public class Worker extends SwingWorker<Void, String> {
         FileReader fr = null;
         BufferedReader br = null;
         try {
-            fr = new FileReader(Controlador.DDJJFileTxt);
+            fr = new FileReader(Controlador.fileTxt);
             br = new BufferedReader(fr);
             String linea;
             String prevCUILT = "";
@@ -108,7 +108,7 @@ public class Worker extends SwingWorker<Void, String> {
 
         // ESCRITURA DE FILAS Y CREACION DE EXCEL
         String fileName = "DDJJ.xlsx";
-        String filePath = Controlador.DDJJFileTxt.getPath() + fileName;
+        String filePath = Controlador.fileTxt.getPath() + fileName;
 
         //Creando objeto libro de Excel
         SXSSFWorkbook book = new SXSSFWorkbook();
@@ -158,10 +158,10 @@ public class Worker extends SwingWorker<Void, String> {
             fileOuS.flush();
             fileOuS.close();
 
-            this.view.textLoader.setText("Excel generado con exito");
+            this.view.textLoaderDDJJ.setText("Excel generado con exito");
             Desktop.getDesktop().open(excelFile);
         } catch (Exception e) {
-            this.view.textLoader.setText("");
+            this.view.textLoaderDDJJ.setText("");
             JOptionPane.showMessageDialog(this.view, "Error inesperado, vuelve a intentarlo", "Error inesperado", JOptionPane.ERROR_MESSAGE);
         }
 
@@ -170,7 +170,7 @@ public class Worker extends SwingWorker<Void, String> {
 
     @Override
     protected void done() {
-        this.view.btnBuscar.setEnabled(true);
-        this.view.btnGenerar.setEnabled(true);
+        this.view.btnBuscarDDJJ.setEnabled(true);
+        this.view.btnGenerarDDJJ.setEnabled(true);
     }
 }
