@@ -54,9 +54,9 @@ public class WorkerEmpleados extends SwingWorker<Void, String> {
             String linea;
             String prevCUILT = "";
             while ((linea = br.readLine()) != null) {
-                String[] fila = new String[19];
+                String[] fila = new String[5];
                 if (!prevCUILT.equals(linea.substring(0, 11))) {
-                    String[] espacio = new String[]{"", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""};
+                    String[] espacio = new String[]{"", "", "", "", ""};
                     data.add(espacio);
                     data.add(HEADER);
                 }
