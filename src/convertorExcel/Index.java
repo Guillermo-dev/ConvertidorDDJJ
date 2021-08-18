@@ -7,7 +7,7 @@ public class Index extends javax.swing.JFrame {
 
     public Index() {
         initComponents();
-        setIconImage(new ImageIcon(getClass().getResource("/convertorDDJJ/images/icon.png")).getImage());
+        setIconImage(new ImageIcon(getClass().getResource("/convertorExcel/images/icon.png")).getImage());
     }
 
     @SuppressWarnings("unchecked")
