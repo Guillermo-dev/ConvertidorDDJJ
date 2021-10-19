@@ -1,4 +1,4 @@
-package convertorExcel;
+package com.muni.lectormuni;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -6,6 +6,7 @@ import java.io.*;
 import java.nio.file.Files;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
@@ -29,6 +30,7 @@ public class Controlador implements ActionListener {
         Controlador.view.setTitle("Generador de excel");
         Controlador.view.setLocationRelativeTo(null);
         Controlador.view.setVisible(true);
+        Controlador.view.setIconImage(new ImageIcon(getClass().getResource("/images/icon.png")).getImage());
 
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());

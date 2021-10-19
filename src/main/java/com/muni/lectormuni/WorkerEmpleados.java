@@ -1,4 +1,4 @@
-package convertorExcel;
+package com.muni.lectormuni;
 
 import java.awt.Desktop;
 import java.io.BufferedReader;

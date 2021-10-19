@@ -1,4 +1,4 @@
-package convertorExcel;
+package com.muni.lectormuni;
 
 public class LectorMain {
 

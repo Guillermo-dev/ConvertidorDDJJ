@@ -1,13 +1,9 @@
-package convertorExcel;
-
-import javax.swing.ImageIcon;
-
+package com.muni.lectormuni;
 
 public class Index extends javax.swing.JFrame {
 
     public Index() {
         initComponents();
-        setIconImage(new ImageIcon(getClass().getResource("/convertorExcel/images/icon.png")).getImage());
     }
 
     @SuppressWarnings("unchecked")
@@ -52,7 +48,7 @@ public class Index extends javax.swing.JFrame {
 
         btnGenerarDDJJ.setBackground(new java.awt.Color(153, 153, 153));
         btnGenerarDDJJ.setText("GENERAR");
-        btnGenerarDDJJ.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnGenerarDDJJ.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnGenerarDDJJ.setFocusPainted(false);
         btnGenerarDDJJ.setMaximumSize(new java.awt.Dimension(80, 25));
         btnGenerarDDJJ.setMinimumSize(new java.awt.Dimension(80, 25));
@@ -77,7 +73,7 @@ public class Index extends javax.swing.JFrame {
 
         btnBuscarDDJJ.setBackground(new java.awt.Color(153, 153, 153));
         btnBuscarDDJJ.setText("Seleccionar");
-        btnBuscarDDJJ.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnBuscarDDJJ.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnBuscarDDJJ.setFocusPainted(false);
         btnBuscarDDJJ.setPreferredSize(new java.awt.Dimension(87, 25));
 
@@ -156,7 +152,7 @@ public class Index extends javax.swing.JFrame {
 
         btnGenerarEmp.setBackground(new java.awt.Color(153, 153, 153));
         btnGenerarEmp.setText("GENERAR");
-        btnGenerarEmp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnGenerarEmp.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnGenerarEmp.setFocusPainted(false);
         btnGenerarEmp.setMaximumSize(new java.awt.Dimension(80, 25));
         btnGenerarEmp.setMinimumSize(new java.awt.Dimension(80, 25));
@@ -170,7 +166,7 @@ public class Index extends javax.swing.JFrame {
 
         btnBuscarEmp.setBackground(new java.awt.Color(153, 153, 153));
         btnBuscarEmp.setText("Seleccionar");
-        btnBuscarEmp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnBuscarEmp.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnBuscarEmp.setFocusPainted(false);
         btnBuscarEmp.setPreferredSize(new java.awt.Dimension(87, 25));
 
@@ -228,7 +224,7 @@ public class Index extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelSeleccion, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+            .addComponent(panelSeleccion)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
